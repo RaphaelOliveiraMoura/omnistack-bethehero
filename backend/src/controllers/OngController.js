@@ -1,6 +1,6 @@
-import crypto from 'crypto';
-
 import connection from '../database/connection';
+
+import generateUniqueId from '../utils/generateUniqueId';
 
 class OngController {
   async index(request, response) {
@@ -12,7 +12,7 @@ class OngController {
   async create(request, response) {
     const { name, email, whatsapp, city, uf } = request.body;
 
-    const id = crypto.randomBytes(4).toString('HEX');
+    const id = generateUniqueId();
 
     await connection('ongs').insert({
       id,
